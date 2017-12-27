@@ -25,4 +25,4 @@ In order to run integration tests, do the following:
 - To run the tests from the command line, use the `test` Gradle task.
 - To run from an IDE, first execute *Build > Assemble project*, then *Build > Create or update IDE project files*. After that you can run tests from the IDE.
 
-Based on CUBA Platform 6.7.3
+Based on CUBA Platform 6.7.6
