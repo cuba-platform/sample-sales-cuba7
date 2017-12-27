@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "SALES_ORDER_LINE")
 @Entity(name = "sales$OrderLine")
@@ -18,11 +19,13 @@ public class OrderLine extends StandardEntity {
     @JoinColumn(name = "ORDER_ID")
     protected Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PRODUCT_ID")
     protected Product product;
 
-    @Column(name = "QUANTITY", precision = 19, scale = 3)
+    @NotNull
+    @Column(name = "QUANTITY", nullable = false, precision = 19, scale = 3)
     protected BigDecimal quantity;
 
     public void setOrder(Order order) {

@@ -62,8 +62,8 @@ create table SALES_ORDER_LINE (
     DELETED_BY varchar(50),
     --
     ORDER_ID varchar(36),
-    PRODUCT_ID varchar(36),
-    QUANTITY decimal(19, 3),
+    PRODUCT_ID varchar(36) not null,
+    QUANTITY decimal(19, 3) not null,
     --
     primary key (ID)
 )^
