@@ -26,3 +26,6 @@ In order to run integration tests, do the following:
 - To run from an IDE, first execute *Build > Assemble project*, then *Build > Create or update IDE project files*. After that you can run tests from the IDE.
 
 Based on CUBA Platform 6.9.1
+
+## Issues
+Please use https://www.cuba-platform.com/discuss for discussion, support, and reporting problems coressponding to this sample.
