@@ -1,62 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://editorCaption"
-        class="com.company.sales.web.order.OrderEdit"
-        datasource="orderDs"
-        focusComponent="fieldGroup"
+        focusComponent="form"
         messagesPack="com.company.sales.web.order">
-    <dsContext>
-        <datasource id="orderDs"
-                    class="com.company.sales.entity.Order"
-                    view="order-edit">
-            <collectionDatasource id="linesDs"
-                                  property="lines"/>
-        </datasource>
-        <collectionDatasource id="customersDs"
-                              class="com.company.sales.entity.Customer"
-                              view="_minimal">
-            <query>
-                <![CDATA[select e from sales$Customer e]]>
-            </query>
-        </collectionDatasource>
-    </dsContext>
+    <data>
+        <instance id="orderDc"
+                  class="com.company.sales.entity.Order"
+                  view="order-edit">
+            <collection id="linesDc" property="lines"/>
+            <loader id="orderLoader"/>
+        </instance>
+        <collection id="customersDc"
+                    class="com.company.sales.entity.Customer"
+                    view="_minimal">
+            <loader>
+                <query>
+                    <![CDATA[select e from sales$Customer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="windowActions"
             spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="orderDs">
+        <form id="form"
+              dataContainer="orderDc">
             <column width="250px">
-                <field property="date"/>
-                <field property="amount"/>
-                <field optionsDatasource="customersDs"
-                       property="customer"/>
+                <dateField id="dateField"
+                           property="date"/>
+                <textField id="amountField"
+                           property="amount"/>
+                <lookupPickerField id="customerField"
+                                   optionsContainer="customersDc"
+                                   property="customer"/>
             </column>
-        </fieldGroup>
+        </form>
         <groupBox id="linesBox"
                   caption="msg://com.company.sales.entity/Order.lines">
             <table id="linesTable"
+                   dataContainer="linesDc"
                    height="200px"
                    width="100%">
                 <actions>
-                    <action id="create"/>
-                    <action id="edit"/>
-                    <action id="remove"/>
+                    <action id="create"
+                            type="create"/>
+                    <action id="edit"
+                            type="edit"/>
+                    <action id="remove"
+                            type="remove"/>
                 </actions>
                 <columns>
                     <column id="product.name"/>
                     <column id="product.price"/>
                     <column id="quantity"/>
                 </columns>
-                <rows datasource="linesDs"/>
                 <buttonsPanel>
-                    <button action="linesTable.create"/>
-                    <button action="linesTable.edit"/>
-                    <button action="linesTable.remove"/>
+                    <button id="createBtn"
+                            action="linesTable.create"/>
+                    <button id="editBtn"
+                            action="linesTable.edit"/>
+                    <button id="removeBtn"
+                            action="linesTable.remove"/>
                 </buttonsPanel>
             </table>
         </groupBox>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+        <hbox id="windowActions"
+              spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
     </layout>
 </window>

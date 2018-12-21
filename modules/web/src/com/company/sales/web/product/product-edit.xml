@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://editorCaption"
-        class="com.company.sales.web.product.ProductEdit"
-        datasource="productDs"
-        focusComponent="fieldGroup"
+        focusComponent="form"
         messagesPack="com.company.sales.web.product">
-    <dsContext>
-        <datasource id="productDs"
-                    class="com.company.sales.entity.Product"
-                    view="_local"/>
-    </dsContext>
+    <data>
+        <instance id="productDc"
+                  class="com.company.sales.entity.Product"
+                  view="_local">
+            <loader id="productLoader"/>
+        </instance>
+    </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="windowActions"
             spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="productDs">
+        <form id="form"
+              dataContainer="productDc">
             <column width="250px">
-                <field property="name"/>
-                <field property="price"/>
+                <textField id="nameField" property="name"/>
+                <textField id="priceField" property="price"/>
             </column>
-        </fieldGroup>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+        </form>
+        <hbox id="windowActions"
+              spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
     </layout>
 </window>

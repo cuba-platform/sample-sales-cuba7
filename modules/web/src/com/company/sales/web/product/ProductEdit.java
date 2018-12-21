@@ -1,7 +1,11 @@
 package com.company.sales.web.product;
 
-import com.haulmont.cuba.gui.components.AbstractEditor;
 import com.company.sales.entity.Product;
+import com.haulmont.cuba.gui.screen.*;
 
-public class ProductEdit extends AbstractEditor<Product> {
+@UiController("sales$Product.edit")
+@UiDescriptor("product-edit.xml")
+@EditedEntityContainer("productDc")
+@LoadDataBeforeShow
+public class ProductEdit extends StandardEditor<Product> {
 }

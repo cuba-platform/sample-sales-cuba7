@@ -1,32 +1,33 @@
 package com.company.sales.web.order;
 
 import com.company.sales.entity.OrderLine;
-import com.haulmont.cuba.gui.components.AbstractEditor;
 import com.company.sales.entity.Order;
-import com.haulmont.cuba.gui.data.CollectionDatasource;
+import com.haulmont.cuba.gui.model.CollectionContainer;
+import com.haulmont.cuba.gui.screen.*;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
-import java.util.Map;
-import java.util.UUID;
 
-public class OrderEdit extends AbstractEditor<Order> {
+@UiController("sales$Order.edit")
+@UiDescriptor("order-edit.xml")
+@EditedEntityContainer("orderDc")
+@LoadDataBeforeShow
+public class OrderEdit extends StandardEditor<Order> {
 
     @Inject
-    private CollectionDatasource<OrderLine, UUID> linesDs;
+    private CollectionContainer<OrderLine> linesDc;
 
-    @Override
-    public void init(
-            Map<String, Object> params) {
-        linesDs.addCollectionChangeListener(e -> calculateAmount());
+    @Subscribe
+    public void init(InitEvent initEvent) {
+        linesDc.addCollectionChangeListener(e -> calculateAmount());
     }
 
-    private void calculateAmount() {
+    protected void calculateAmount() {
         BigDecimal amount = BigDecimal.ZERO;
-        for (OrderLine line : linesDs.getItems()) {
+        for (OrderLine line : linesDc.getItems()) {
             amount = amount.add(line.getProduct().getPrice().multiply(line.getQuantity()));
         }
-        getItem().setAmount(amount);
+        getEditedEntity().setAmount(amount);
     }
 
 }

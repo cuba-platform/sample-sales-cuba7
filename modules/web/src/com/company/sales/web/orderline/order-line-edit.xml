@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://editorCaption"
-        class="com.company.sales.web.orderline.OrderLineEdit"
-        datasource="orderLineDs"
-        focusComponent="fieldGroup"
+        focusComponent="form"
         messagesPack="com.company.sales.web.orderline">
-    <dsContext>
-        <datasource id="orderLineDs"
-                    class="com.company.sales.entity.OrderLine"
-                    view="orderLine-with-product"/>
-    </dsContext>
+    <data>
+        <instance id="orderLineDc"
+                  class="com.company.sales.entity.OrderLine"
+                  view="orderLine-with-product">
+            <loader id="orderLineLoader"/>
+        </instance>
+    </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="windowActions"
             spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="orderLineDs">
+        <form id="form"
+              dataContainer="orderLineDc">
             <column width="250px">
-                <field property="product"/>
-                <field property="quantity"/>
+                <pickerField id="productField"
+                             property="product"/>
+                <textField id="quantityField"
+                           property="quantity"/>
             </column>
-        </fieldGroup>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+        </form>
+        <hbox id="windowActions"
+              spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
     </layout>
 </window>

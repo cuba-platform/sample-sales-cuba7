@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://browseCaption"
-        class="com.company.sales.web.customer.CustomerBrowse"
         focusComponent="customersTable"
-        lookupComponent="customersTable"
         messagesPack="com.company.sales.web.customer">
-    <dsContext>
-        <groupDatasource id="customersDs"
-                         class="com.company.sales.entity.Customer"
-                         view="_local">
-            <query>
-                <![CDATA[select e from sales$Customer e]]>
-            </query>
-        </groupDatasource>
-    </dsContext>
+    <data>
+        <collection id="customersDc"
+                    class="com.company.sales.entity.Customer"
+                    view="_local">
+            <loader id="customersLoader">
+                <query><![CDATA[select e from sales$Customer e]]></query>
+            </loader>
+        </collection>
+    </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="customersTable"
             spacing="true">
         <filter id="filter"
                 applyTo="customersTable"
-                datasource="customersDs">
+                dataLoader="customersLoader">
             <properties include=".*"/>
         </filter>
         <groupTable id="customersTable"
+                    dataContainer="customersDc"
                     width="100%">
             <actions>
-                <action id="create"/>
-                <action id="edit"/>
-                <action id="remove"/>
+                <action id="create"
+                        type="create"/>
+                <action id="edit"
+                        type="edit"/>
+                <action id="remove"
+                        type="remove"/>
             </actions>
             <columns>
                 <column id="name"/>
                 <column id="email"/>
             </columns>
-            <rows datasource="customersDs"/>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
@@ -46,5 +47,11 @@
                         action="customersTable.remove"/>
             </buttonsPanel>
         </groupTable>
+        <hbox id="lookupActions"
+              spacing="true"
+              visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
     </layout>
 </window>

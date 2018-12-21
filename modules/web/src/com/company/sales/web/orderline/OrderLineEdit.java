@@ -1,7 +1,10 @@
 package com.company.sales.web.orderline;
 
-import com.haulmont.cuba.gui.components.AbstractEditor;
 import com.company.sales.entity.OrderLine;
+import com.haulmont.cuba.gui.screen.*;
 
-public class OrderLineEdit extends AbstractEditor<OrderLine> {
+@UiController("sales$OrderLine.edit")
+@UiDescriptor("order-line-edit.xml")
+@EditedEntityContainer("orderLineDc")
+public class OrderLineEdit extends StandardEditor<OrderLine> {
 }
