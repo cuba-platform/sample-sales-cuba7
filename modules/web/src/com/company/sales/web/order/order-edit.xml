@@ -7,22 +7,23 @@
         <instance id="orderDc"
                   class="com.company.sales.entity.Order"
                   view="order-edit">
-            <collection id="linesDc" property="lines"/>
-            <loader id="orderLoader"/>
+            <loader id="orderDl"/>
+            <collection id="linesDc"
+                        property="lines"/>
         </instance>
         <collection id="customersDc"
                     class="com.company.sales.entity.Customer"
                     view="_minimal">
-            <loader>
+            <loader id="customersDl">
                 <query>
-                    <![CDATA[select e from sales$Customer e]]>
+                    <![CDATA[select e from sales_Customer e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
+    <layout expand="editActions"
             spacing="true">
         <form id="form"
               dataContainer="orderDc">
@@ -33,7 +34,14 @@
                            property="amount"/>
                 <lookupPickerField id="customerField"
                                    optionsContainer="customersDc"
-                                   property="customer"/>
+                                   property="customer">
+                    <actions>
+                        <action id="lookup"
+                                type="picker_lookup"/>
+                        <action id="open"
+                                type="picker_open"/>
+                    </actions>
+                </lookupPickerField>
             </column>
         </form>
         <groupBox id="linesBox"
@@ -65,7 +73,7 @@
                 </buttonsPanel>
             </table>
         </groupBox>
-        <hbox id="windowActions"
+        <hbox id="editActions"
               spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

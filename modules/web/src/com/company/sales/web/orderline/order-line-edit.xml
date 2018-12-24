@@ -7,23 +7,30 @@
         <instance id="orderLineDc"
                   class="com.company.sales.entity.OrderLine"
                   view="orderLine-with-product">
-            <loader id="orderLineLoader"/>
+            <loader id="orderLineDl"/>
         </instance>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
+    <layout expand="editActions"
             spacing="true">
         <form id="form"
               dataContainer="orderLineDc">
             <column width="250px">
                 <pickerField id="productField"
-                             property="product"/>
+                             property="product">
+                    <actions>
+                        <action id="lookup"
+                                type="picker_lookup"/>
+                        <action id="clear"
+                                type="picker_clear"/>
+                    </actions>
+                </pickerField>
                 <textField id="quantityField"
                            property="quantity"/>
             </column>
         </form>
-        <hbox id="windowActions"
+        <hbox id="editActions"
               spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

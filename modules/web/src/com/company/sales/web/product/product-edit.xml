@@ -7,21 +7,23 @@
         <instance id="productDc"
                   class="com.company.sales.entity.Product"
                   view="_local">
-            <loader id="productLoader"/>
+            <loader id="productDl"/>
         </instance>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
+    <layout expand="editActions"
             spacing="true">
         <form id="form"
               dataContainer="productDc">
             <column width="250px">
-                <textField id="nameField" property="name"/>
-                <textField id="priceField" property="price"/>
+                <textField id="nameField"
+                           property="name"/>
+                <textField id="priceField"
+                           property="price"/>
             </column>
         </form>
-        <hbox id="windowActions"
+        <hbox id="editActions"
               spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

@@ -1,9 +1,9 @@
 package com.company.sales.web.customer;
 
-import com.company.sales.entity.Customer;
 import com.haulmont.cuba.gui.screen.*;
+import com.company.sales.entity.Customer;
 
-@UiController("sales$Customer.browse")
+@UiController("sales_Customer.browse")
 @UiDescriptor("customer-browse.xml")
 @LookupComponent("customersTable")
 @LoadDataBeforeShow

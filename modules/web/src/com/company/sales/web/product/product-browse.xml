@@ -3,12 +3,14 @@
         caption="msg://browseCaption"
         focusComponent="productsTable"
         messagesPack="com.company.sales.web.product">
-    <data>
+    <data readOnly="true">
         <collection id="productsDc"
                     class="com.company.sales.entity.Product"
                     view="_local">
-            <loader id="productLoader">
-                <query><![CDATA[select e from sales$Product e]]></query>
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from sales_Product e]]>
+                </query>
             </loader>
         </collection>
     </data>
@@ -18,7 +20,7 @@
             spacing="true">
         <filter id="filter"
                 applyTo="productsTable"
-                dataLoader="productLoader">
+                dataLoader="productsDl">
             <properties include=".*"/>
         </filter>
         <groupTable id="productsTable"

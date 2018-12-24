@@ -11,7 +11,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "SALES_ORDER_LINE")
-@Entity(name = "sales$OrderLine")
+@Entity(name = "sales_OrderLine")
 public class OrderLine extends StandardEntity {
     private static final long serialVersionUID = -2202863497466101774L;
 

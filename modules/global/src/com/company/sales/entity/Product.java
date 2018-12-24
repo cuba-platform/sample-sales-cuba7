@@ -9,7 +9,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 
 @NamePattern("%s|name")
 @Table(name = "SALES_PRODUCT")
-@Entity(name = "sales$Product")
+@Entity(name = "sales_Product")
 public class Product extends StandardEntity {
     private static final long serialVersionUID = 5550142551079178888L;
 

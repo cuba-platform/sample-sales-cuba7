@@ -1,9 +1,9 @@
 package com.company.sales.web.order;
 
-import com.company.sales.entity.Order;
 import com.haulmont.cuba.gui.screen.*;
+import com.company.sales.entity.Order;
 
-@UiController("sales$Order.browse")
+@UiController("sales_Order.browse")
 @UiDescriptor("order-browse.xml")
 @LookupComponent("ordersTable")
 @LoadDataBeforeShow

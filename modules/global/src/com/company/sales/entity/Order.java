@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 
 @NamePattern("%s %s|date,customer")
 @Table(name = "SALES_ORDER")
-@Entity(name = "sales$Order")
+@Entity(name = "sales_Order")
 public class Order extends StandardEntity {
     private static final long serialVersionUID = 5602880376063487368L;
 

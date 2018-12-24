@@ -3,13 +3,13 @@
         caption="msg://browseCaption"
         focusComponent="ordersTable"
         messagesPack="com.company.sales.web.order">
-    <data>
-        <collection id="ordersDs"
+    <data readOnly="true">
+        <collection id="ordersDc"
                     class="com.company.sales.entity.Order"
                     view="order-with-customer">
-            <loader id="ordersLoader">
+            <loader id="ordersDl">
                 <query>
-                    <![CDATA[select e from sales$Order e]]>
+                    <![CDATA[select e from sales_Order e]]>
                 </query>
             </loader>
         </collection>
@@ -20,11 +20,11 @@
             spacing="true">
         <filter id="filter"
                 applyTo="ordersTable"
-                dataLoader="ordersLoader">
+                dataLoader="ordersDl">
             <properties include=".*"/>
         </filter>
         <groupTable id="ordersTable"
-                    dataContainer="ordersDs"
+                    dataContainer="ordersDc"
                     width="100%">
             <actions>
                 <action id="create"

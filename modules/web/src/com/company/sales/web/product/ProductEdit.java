@@ -1,9 +1,10 @@
 package com.company.sales.web.product;
 
-import com.company.sales.entity.Product;
 import com.haulmont.cuba.gui.screen.*;
+import com.company.sales.entity.Product;
 
-@UiController("sales$Product.edit")
+
+@UiController("sales_Product.edit")
 @UiDescriptor("product-edit.xml")
 @EditedEntityContainer("productDc")
 @LoadDataBeforeShow

@@ -8,7 +8,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 
 @NamePattern("%s|name")
 @Table(name = "SALES_CUSTOMER")
-@Entity(name = "sales$Customer")
+@Entity(name = "sales_Customer")
 public class Customer extends StandardEntity {
     private static final long serialVersionUID = -6018518150505269719L;
 

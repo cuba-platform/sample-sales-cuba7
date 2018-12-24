@@ -7,21 +7,21 @@
         <instance id="customerDc"
                   class="com.company.sales.entity.Customer"
                   view="_local">
-            <loader id="customerLoader"/>
+            <loader id="customerDl"/>
         </instance>
         <collection id="ordersDc"
                     class="com.company.sales.entity.Order"
                     view="_local">
-            <loader id="ordersLoader">
+            <loader id="ordersDl">
                 <query>
-                    <![CDATA[select o from sales$Order o where o.customer.id = :customerId order by o.date]]>
+                    <![CDATA[select o from sales_Order o where o.customer = :customer order by o.date]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
+    <layout expand="editActions"
             spacing="true">
         <form id="form"
               dataContainer="customerDc">
@@ -42,7 +42,7 @@
                 <column id="amount"/>
             </columns>
         </table>
-        <hbox id="windowActions"
+        <hbox id="editActions"
               spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
