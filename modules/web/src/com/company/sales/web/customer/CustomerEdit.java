@@ -17,6 +17,8 @@ public class CustomerEdit extends StandardEditor<Customer> {
 
     @Subscribe
     protected void onBeforeShow(BeforeShowEvent event) {
+        // In case of using parameters in the query, we need to remove
+        // @LoadDataBeforeShow annotation and manage data loading manually
         ordersDl.setParameter("customer", getEditedEntity());
         getScreenData().loadAll();
     }
