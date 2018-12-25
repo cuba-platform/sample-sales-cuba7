@@ -1,6 +1,7 @@
 package com.company.sales.web.order;
 
 import com.company.sales.entity.OrderLine;
+import com.haulmont.cuba.gui.model.CollectionChangeType;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.sales.entity.Order;
@@ -18,8 +19,10 @@ public class OrderEdit extends StandardEditor<Order> {
     private CollectionContainer<OrderLine> linesDc;
 
     @Subscribe(id = "linesDc", target = Target.DATA_CONTAINER)
-    protected void onLinesDcCollectionChange(CollectionContainer.CollectionChangeEvent<OrderLine> event) {
-        calculateAmount();
+    protected void onOrderLinesDcCollectionChange(CollectionContainer.CollectionChangeEvent<OrderLine> event) {
+        if (event.getChangeType() != CollectionChangeType.REFRESH) {
+            calculateAmount();
+        }
     }
 
     protected void calculateAmount() {
