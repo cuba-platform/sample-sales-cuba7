@@ -19,12 +19,6 @@ The application project covers the following aspects:
     - Visual editing of the existing screens
 - Creating Integration Tests
 
-In order to run integration tests, do the following:
-
-- Execute `startTestDb` and `createTestDb` Gradle tasks in the command line or via the Studio *Search* dialog.
-- To run the tests from the command line, use the `test` Gradle task.
-- To run from an IDE, first execute *Build > Assemble project*, then *Build > Create or update IDE project files*. After that you can run tests from the IDE.
-
 Based on CUBA Platform 7.0
 
 ## Issues
