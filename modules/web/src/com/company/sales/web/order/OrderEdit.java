@@ -8,7 +8,6 @@ import com.company.sales.entity.Order;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
-import java.util.List;
 
 @UiController("sales_Order.edit")
 @UiDescriptor("order-edit.xml")
@@ -16,19 +15,21 @@ import java.util.List;
 @LoadDataBeforeShow
 public class OrderEdit extends StandardEditor<Order> {
 
+    @Inject
+    private CollectionContainer<OrderLine> linesDc;
+
     @Subscribe(id = "linesDc", target = Target.DATA_CONTAINER)
     protected void onOrderLinesDcCollectionChange(CollectionContainer.CollectionChangeEvent<OrderLine> event) {
         if (event.getChangeType() != CollectionChangeType.REFRESH) {
-            getEditedEntity().setAmount(calculateAmount(event.getSource().getItems()));
+            calculateAmount();
         }
     }
 
-    protected BigDecimal calculateAmount(List<OrderLine> orderLines) {
+    protected void calculateAmount() {
         BigDecimal amount = BigDecimal.ZERO;
-        for (OrderLine line : orderLines) {
+        for (OrderLine line : linesDc.getItems()) {
             amount = amount.add(line.getProduct().getPrice().multiply(line.getQuantity()));
         }
-        return amount;
-
+        getEditedEntity().setAmount(amount);
     }
 }
