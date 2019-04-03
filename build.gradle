@@ -1,16 +1,17 @@
 
 buildscript {
-    ext.cubaVersion = '7.0.0'
+    ext.cubaVersion = '7.0.3'
     repositories {
 
-maven {
-    url 'https://repo.cuba-platform.com/content/groups/work'
-    credentials {
-        username(rootProject.hasProperty('repoUser') ? rootProject['repoUser'] : 'cuba')
-        password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
-    }
-}
+        maven {
+            url 'https://dl.bintray.com/cuba-platform/main'
+        }
 
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'http://maven.vaadin.com/vaadin-addons'
+        }
 }
 dependencies {
     classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
@@ -44,7 +45,7 @@ dependencies {
 
 }
 
-def hsql = 'org.hsqldb:hsqldb:2.2.9'
+def hsql = 'org.hsqldb:hsqldb:2.4.1'
 
 configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
@@ -187,13 +188,13 @@ configure(webModule) {
 
 
 
-task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf" ) {
+task undeploy(type: Delete, dependsOn: ':app-web:cleanConf') {
     delete("$cuba.tomcat.dir/shared")
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}-core" )
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}" )
+    delete("$cuba.tomcat.dir/webapps/app-core")
+    delete("$cuba.tomcat.dir/webapps/app")
 }
 
-task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy" , ":${modulePrefix}-web:deploy" ], description: 'Redeploys applications and restarts local Tomcat') {
+task restart(dependsOn: ['stop', ':app-core:deploy', ':app-web:deploy'], description: 'Redeploys applications and restarts local Tomcat') {
     doLast {
         ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
             not {
@@ -204,5 +205,8 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy" , ":${modulePref
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3.1'
+}
 
 apply from: 'extra.gradle'

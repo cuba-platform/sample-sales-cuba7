@@ -31,7 +31,7 @@
                 <dateField id="dateField"
                            property="date"/>
                 <textField id="amountField"
-                           property="amount"/>
+                           property="amount" editable="false"/>
                 <lookupPickerField id="customerField"
                                    optionsContainer="customersDc"
                                    property="customer">
