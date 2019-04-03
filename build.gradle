@@ -205,8 +205,4 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy" , ":${modulePref
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.10.3'
-}
-
 apply from: 'extra.gradle'
