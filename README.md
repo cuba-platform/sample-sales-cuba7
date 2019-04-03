@@ -1,6 +1,6 @@
 # Sales
 
-This is a "Hello World" application which is designed to show the core capabilities and features of both the CUBA Platform and Studio.
+This is a "Hello World" application which is designed to show the core capabilities and features of both the [CUBA Platform](https://www.cuba-platform.com) and Studio.
 
 The Sales application is a simple purchase management system that enables tracking orders made by customers. Each order consists of a number of products. Customers, products and orders can be created, edited and deleted through the system user interface.
 
