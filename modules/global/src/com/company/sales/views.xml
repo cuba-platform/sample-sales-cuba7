@@ -20,4 +20,9 @@
         <property name="customer"
                   view="_minimal"/>
     </view>
+    <view entity="sales_OrderLine" name="orderLine-with-order" extends="_local">
+        <property name="order" view="_minimal">
+            <property name="numberOfSpecialProducts"/>
+        </property>
+    </view>
 </views>

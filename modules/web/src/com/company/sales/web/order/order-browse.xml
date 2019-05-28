@@ -38,6 +38,7 @@
                 <column id="date"/>
                 <column id="amount"/>
                 <column id="customer"/>
+                <column id="numberOfSpecialProducts"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

@@ -37,6 +37,7 @@
             <columns>
                 <column id="name"/>
                 <column id="price"/>
+                <column id="special"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

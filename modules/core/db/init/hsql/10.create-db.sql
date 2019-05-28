@@ -28,6 +28,7 @@ create table SALES_PRODUCT (
     --
     NAME varchar(50) not null,
     PRICE decimal(19, 2) not null,
+    SPECIAL boolean,
     --
     primary key (ID)
 )^
@@ -46,6 +47,7 @@ create table SALES_ORDER (
     DATE_ date not null,
     AMOUNT decimal(19, 2),
     CUSTOMER_ID varchar(36),
+    NUMBER_OF_SPECIAL_PRODUCTS integer,
     --
     primary key (ID)
 )^

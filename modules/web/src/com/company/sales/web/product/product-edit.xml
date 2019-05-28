@@ -21,6 +21,7 @@
                            property="name"/>
                 <textField id="priceField"
                            property="price"/>
+                <checkBox id="specialField" property="special"/>
             </column>
         </form>
         <hbox id="editActions"

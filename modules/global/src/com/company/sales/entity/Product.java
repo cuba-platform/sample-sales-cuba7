@@ -1,11 +1,12 @@
 package com.company.sales.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.StandardEntity;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import javax.persistence.Column;
-import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.chile.core.annotations.NamePattern;
 
 @NamePattern("%s|name")
 @Table(name = "SALES_PRODUCT")
@@ -18,6 +19,17 @@ public class Product extends StandardEntity {
 
     @Column(name = "PRICE", nullable = false)
     protected BigDecimal price;
+
+    @Column(name = "SPECIAL")
+    protected Boolean special;
+
+    public Boolean getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(Boolean special) {
+        this.special = special;
+    }
 
     public void setName(String name) {
         this.name = name;

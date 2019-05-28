@@ -1,24 +1,17 @@
 package com.company.sales.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
-import java.math.BigDecimal;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.chile.core.annotations.NamePattern;
-import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
-import javax.persistence.OneToMany;
 
 @NamePattern("%s %s|date,customer")
 @Table(name = "SALES_ORDER")
@@ -42,6 +35,17 @@ public class Order extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     protected Customer customer;
+
+    @Column(name = "NUMBER_OF_SPECIAL_PRODUCTS")
+    protected Integer numberOfSpecialProducts;
+
+    public Integer getNumberOfSpecialProducts() {
+        return numberOfSpecialProducts;
+    }
+
+    public void setNumberOfSpecialProducts(Integer numberOfSpecialProducts) {
+        this.numberOfSpecialProducts = numberOfSpecialProducts;
+    }
 
     public void setLines(List<OrderLine> lines) {
         this.lines = lines;
