@@ -27,7 +27,11 @@ public class OrderLineChangedListener {
                     .getOrder();
         } else {
             Id<Order, UUID> orderId = event.getChanges().getOldReferenceId("order");
-            order = txDm.load(orderId).one();
+            order = txDm.load(orderId).optional().orElse(null);
+            if (order == null) {
+                // the order could be deleted too
+                return;
+            }
         }
 
         long count = txDm.load(OrderLine.class)
