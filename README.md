@@ -1,4 +1,4 @@
-# Sales
+# Sample Sales CUBA 7
 
 This is a "Hello World" application which is designed to show the core capabilities and features of both the [CUBA Platform](https://www.cuba-platform.com) and Studio.
 
