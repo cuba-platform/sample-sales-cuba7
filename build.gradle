@@ -1,6 +1,5 @@
-
 buildscript {
-    ext.cubaVersion = '7.1.0'
+    ext.cubaVersion = '7.2.4'
     repositories {
         maven {
             url 'https://dl.bintray.com/cuba-platform/main'
@@ -14,9 +13,9 @@ buildscript {
 
 def modulePrefix = 'app'
 
-def globalModule = project(":${modulePrefix}-global" )
-def coreModule = project(":${modulePrefix}-core" )
-def webModule = project(":${modulePrefix}-web" )
+def globalModule = project(":${modulePrefix}-global")
+def coreModule = project(":${modulePrefix}-core")
+def webModule = project(":${modulePrefix}-web")
 
 def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
 
@@ -28,9 +27,6 @@ cuba {
         group = 'com.company.sales'
         version = '0.1'
         isSnapshot = true
-    }
-    tomcat {
-        dir = "$project.rootDir/deploy/tomcat"
     }
 }
 
@@ -65,7 +61,7 @@ configure(globalModule) {
         main { enabled = true }
     }
 
-    
+
 }
 
 configure(coreModule) {
@@ -83,36 +79,19 @@ configure(coreModule) {
 
     }
 
-    task cleanConf(description: 'Cleans up conf directory') {
-        doLast {
-            def dir = new File(cuba.tomcat.dir, "/conf/${modulePrefix}-core" )
-            if (dir.isDirectory()) {
-                ant.delete(includeemptydirs: true) {
-                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
-                }
-            }
-        }
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}-core/conf"
     }
 
-    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
+    task deploy(dependsOn: [jar, cleanConf], type: CubaDeployment) {
         appName = "${modulePrefix}-core"
         appJars(modulePrefix + '-global', modulePrefix + '-core')
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-        dbms = 'hsql'
-        host = 'localhost'
-        dbName = 'sales'
-        dbUser = 'sa'
-        dbPassword = ''
     }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        dbms = 'hsql'
-        host = 'localhost'
-        dbName = 'sales'
-        dbUser = 'sa'
-        dbPassword = ''
     }
 
     task startTestDb(type: CubaHsqlStart) {
@@ -139,7 +118,7 @@ configure(webModule) {
         compile(globalModule)
 
     }
-    
+
     task webArchive(type: Zip) {
         from file("$buildDir/web")
         from file('web')
@@ -153,7 +132,7 @@ configure(webModule) {
     task deployConf(type: Copy) {
         from file('src')
         include "com/company/sales/**"
-        into "$cuba.tomcat.dir/conf/${modulePrefix}"
+        into "$cuba.appHome/${modulePrefix}/conf"
     }
 
     task clearMessagesCache(type: CubaClearMessagesCache) {
@@ -161,42 +140,30 @@ configure(webModule) {
     }
     deployConf.dependsOn clearMessagesCache
 
-    task cleanConf(description: 'Cleans up conf directory') {
-        doLast {
-            def dir = new File(cuba.tomcat.dir, "/conf/${modulePrefix}" )
-            if (dir.isDirectory()) {
-                ant.delete(includeemptydirs: true) {
-                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
-                }
-            }
-        }
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}/conf"
     }
 
-    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
+    task deploy(dependsOn: [jar, cleanConf], type: CubaDeployment) {
         appName = "${modulePrefix}"
         appJars(modulePrefix + '-global', modulePrefix + '-web')
     }
 }
 
 
-
-
-
-task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf" ) {
+task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
     delete("$cuba.tomcat.dir/shared")
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}-core" )
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}" )
+    delete("$cuba.tomcat.dir/webapps/${modulePrefix}-core")
+    delete("$cuba.tomcat.dir/webapps/${modulePrefix}")
 }
 
-task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy" , ":${modulePrefix}-web:deploy" ], description: 'Redeploys applications and restarts local Tomcat') {
+task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefix}-web:deploy"], description: 'Redeploys applications and restarts local Tomcat') {
     doLast {
         ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
             not {
                 socket(server: 'localhost', port: '8787')
             }
         }
-        start.execute()
     }
 }
-
-apply from: 'extra.gradle'
+restart.finalizedBy start
