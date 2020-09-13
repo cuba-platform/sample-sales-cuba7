@@ -1,6 +1,7 @@
 package com.company.sales.web.product;
 
-import com.haulmont.cuba.gui.screen.*;
+import com.haulmont.cuba.gui.screen.LoadDataBeforeShow;
+import io.jmix.ui.screen.*;
 import com.company.sales.entity.Product;
 
 

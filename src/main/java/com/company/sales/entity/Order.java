@@ -1,12 +1,12 @@
 package com.company.sales.entity;
 
-import com.haulmont.chile.core.annotations.Composition;
+import io.jmix.core.metamodel.annotation.Composition;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
-import com.haulmont.cuba.core.entity.annotation.OnDelete;
-import com.haulmont.cuba.core.global.DeletePolicy;
+import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.DeletePolicy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

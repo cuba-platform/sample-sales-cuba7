@@ -1,9 +1,10 @@
 package com.company.sales.web.order;
 
 import com.company.sales.entity.OrderLine;
-import com.haulmont.cuba.gui.model.CollectionChangeType;
-import com.haulmont.cuba.gui.model.CollectionContainer;
-import com.haulmont.cuba.gui.screen.*;
+import io.jmix.ui.model.CollectionChangeType;
+import io.jmix.ui.model.CollectionContainer;
+import com.haulmont.cuba.gui.screen.LoadDataBeforeShow;
+import io.jmix.ui.screen.*;
 import com.company.sales.entity.Order;
 
 import javax.inject.Inject;

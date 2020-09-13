@@ -1,8 +1,8 @@
 package com.company.sales.web.customer;
 
 import com.company.sales.entity.Order;
-import com.haulmont.cuba.gui.model.CollectionLoader;
-import com.haulmont.cuba.gui.screen.*;
+import io.jmix.ui.model.CollectionLoader;
+import io.jmix.ui.screen.*;
 import com.company.sales.entity.Customer;
 
 import javax.inject.Inject;
