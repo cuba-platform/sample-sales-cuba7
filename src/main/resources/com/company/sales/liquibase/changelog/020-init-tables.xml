@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="sales">
+
+        <createTable tableName="SALES_CUSTOMER">
+            <column name="ID" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TS" type="datetime"/>
+            <column name="CREATED_BY" type="varchar(50)"/>
+            <column name="UPDATE_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="varchar(50)"/>
+            <column name="DELETE_TS" type="datetime"/>
+            <column name="DELETED_BY" type="varchar(50)"/>
+
+            <column name="NAME" type="varchar(100)"/>
+            <column name="EMAIL" type="varchar(100)"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="2" author="sales">
+
+        <createTable tableName="SALES_PRODUCT">
+            <column name="ID" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TS" type="datetime"/>
+            <column name="CREATED_BY" type="varchar(50)"/>
+            <column name="UPDATE_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="varchar(50)"/>
+            <column name="DELETE_TS" type="datetime"/>
+            <column name="DELETED_BY" type="varchar(50)"/>
+
+            <column name="NAME" type="varchar(50)"/>
+            <column name="PRICE" type="decimal(19, 2)"/>
+            <column name="SPECIAL" type="boolean"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="3" author="sales">
+
+        <createTable tableName="SALES_ORDER">
+            <column name="ID" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TS" type="datetime"/>
+            <column name="CREATED_BY" type="varchar(50)"/>
+            <column name="UPDATE_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="varchar(50)"/>
+            <column name="DELETE_TS" type="datetime"/>
+            <column name="DELETED_BY" type="varchar(50)"/>
+
+            <column name="DATE_" type="date"/>
+            <column name="AMOUNT" type="decimal(19, 2)"/>
+            <column name="CUSTOMER_ID" type="uuid"/>
+            <column name="NUMBER_OF_SPECIAL_PRODUCTS" type="integer"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="4" author="sales">
+
+        <createTable tableName="SALES_ORDER_LINE">
+            <column name="ID" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TS" type="datetime"/>
+            <column name="CREATED_BY" type="varchar(50)"/>
+            <column name="UPDATE_TS" type="datetime"/>
+            <column name="UPDATED_BY" type="varchar(50)"/>
+            <column name="DELETE_TS" type="datetime"/>
+            <column name="DELETED_BY" type="varchar(50)"/>
+
+            <column name="ORDER_ID" type="uuid"/>
+            <column name="PRODUCT_ID" type="uuid"/>
+            <column name="QUANTITY" type="decimal(19, 3)"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="5" author="sales">
+        <addForeignKeyConstraint baseTableName="SALES_ORDER" baseColumnNames="CUSTOMER_ID" constraintName="FK_SALES_ORDER_CUSTOMER"
+                                 referencedTableName="SALES_CUSTOMER" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="6" author="sales">
+        <addForeignKeyConstraint baseTableName="SALES_ORDER_LINE" baseColumnNames="ORDER_ID" constraintName="FK_SALES_ORDER_LINE_ORDER"
+                                 referencedTableName="SALES_ORDER" referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="7" author="sales">
+        <addForeignKeyConstraint baseTableName="SALES_ORDER_LINE" baseColumnNames="PRODUCT_ID" constraintName="FK_SALES_ORDER_LINE_PRODUCT"
+                                 referencedTableName="SALES_PRODUCT" referencedColumnNames="ID"/>
+    </changeSet>
+
+</databaseChangeLog>

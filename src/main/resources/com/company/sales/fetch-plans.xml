@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fetchPlans xmlns="http://jmix.io/schema/core/fetch-plans">
+    <fetchPlan class="com.company.sales.entity.Order"
+          extends="_local"
+          name="order-with-customer">
+        <property name="customer"
+                  fetchPlan="_minimal"/>
+    </fetchPlan>
+    <fetchPlan class="com.company.sales.entity.OrderLine"
+          extends="_local"
+          name="orderLine-with-product">
+        <property name="product"
+                  fetchPlan="_local"/>
+    </fetchPlan>
+    <fetchPlan class="com.company.sales.entity.Order"
+          extends="_local"
+          name="order-edit">
+        <property name="lines"
+                  fetchPlan="orderLine-with-product"/>
+        <property name="customer"
+                  fetchPlan="_minimal"/>
+    </fetchPlan>
+    <fetchPlan entity="sales_OrderLine" name="orderLine-with-order" extends="_local">
+        <property name="order" fetchPlan="_minimal">
+            <property name="numberOfSpecialProducts"/>
+        </property>
+    </fetchPlan>
+</fetchPlans>
