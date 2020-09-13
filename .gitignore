@@ -1,11 +1,17 @@
+.jmix
+
 .gradle
-.studio
-*.ipr
-*.iml
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### IntelliJ IDEA ###
+.idea
 *.iws
-build/*
-deploy/*
-modules/*/build/*
-.idea/*
-out
-test-run
+*.iml
+*.ipr
+out/
+
+### VS Code ###
+.vscode/

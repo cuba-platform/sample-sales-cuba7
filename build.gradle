@@ -1,169 +1,49 @@
-buildscript {
-    ext.cubaVersion = '7.2.6'
-    repositories {
-        maven {
-            url 'https://dl.bintray.com/cuba-platform/main'
-        }
-        jcenter()
-    }
-    dependencies {
-        classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
-    }
+plugins {
+    id 'io.jmix' version '0.1.11'
+    id 'java'
 }
 
-def modulePrefix = 'app'
+apply plugin: 'org.springframework.boot'
 
-def globalModule = project(":${modulePrefix}-global")
-def coreModule = project(":${modulePrefix}-core")
-def webModule = project(":${modulePrefix}-web")
+jmix {
+    bomVersion = '0.1.0-SNAPSHOT'
+}
 
-def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
+group = 'com.company'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
-
-apply(plugin: 'cuba')
-
-cuba {
-    artifact {
-        group = 'com.company.sales'
-        version = '0.1'
-        isSnapshot = true
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        url 'https://nexus.jmix.io/repository/public'
     }
 }
 
 dependencies {
-    appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
+    implementation 'io.jmix.core:jmix-core-starter'
+    implementation 'io.jmix.data:jmix-data-starter'
+    implementation 'io.jmix.ui:jmix-ui-starter'
+    implementation 'io.jmix.ui:jmix-ui-data-starter'
+    implementation 'io.jmix.ui:jmix-ui-themes-compiled'
+    implementation 'io.jmix.ui:jmix-ui-widgets-compiled'
+    implementation 'io.jmix.security:jmix-security-starter'
+    implementation 'io.jmix.security:jmix-security-ui-starter'
+    implementation 'io.jmix.security:jmix-security-data-starter'
 
-}
+    implementation 'io.jmix.cuba:jmix-cuba-starter'
+    implementation 'io.jmix.datatools:jmix-datatools-ui-starter'
 
-def hsql = 'org.hsqldb:hsqldb:2.4.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-configure([globalModule, coreModule, webModule]) {
-    apply(plugin: 'java')
-    apply(plugin: 'maven')
-    apply(plugin: 'cuba')
+    runtimeOnly 'org.hsqldb:hsqldb'
 
-    dependencies {
-        testCompile('junit:junit:4.12')
-    }
-
-    task sourceJar(type: Jar) {
-        from file('src')
-        classifier = 'sources'
-    }
-
-    artifacts {
-        archives sourceJar
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }
 
-configure(globalModule) {
-    entitiesEnhancing {
-        main { enabled = true }
-    }
-
-
+test {
+    useJUnitPlatform()
 }
-
-configure(coreModule) {
-
-    configurations {
-        jdbc
-        dbscripts
-    }
-
-    dependencies {
-        compile(globalModule)
-        compileOnly(servletApi)
-        jdbc(hsql)
-        testRuntime(hsql)
-
-    }
-
-    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
-        delete "$cuba.appHome/${modulePrefix}-core/conf"
-    }
-
-    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
-        appName = "${modulePrefix}-core"
-        appJars(modulePrefix + '-global', modulePrefix + '-core')
-    }
-
-    task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-    }
-
-    task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-    }
-
-    task startTestDb(type: CubaHsqlStart) {
-        dbPort = 9002 // should be different from the default port 9001 used by Studio HSQLDB server
-        dbName = 'sales_test'
-    }
-
-    task createTestDb(dependsOn: assemble, description: 'Creates local Postgres database for tests', type: CubaDbCreation) {
-        dbms = 'hsql'
-        host = 'localhost:9002'
-        dbName = 'sales_test'
-        dbUser = 'sa'
-        dbPassword = ''
-    }
-}
-
-configure(webModule) {
-    configurations {
-        webcontent
-    }
-
-    dependencies {
-        compileOnly(servletApi)
-        compile(globalModule)
-
-    }
-
-    task webArchive(type: Zip) {
-        from file("$buildDir/web")
-        from file('web')
-        classifier = 'web'
-    }
-
-    artifacts {
-        archives webArchive
-    }
-
-    task deployConf(type: Copy) {
-        from file('src')
-        include "com/company/sales/**"
-        into "$cuba.appHome/${modulePrefix}/conf"
-    }
-
-    task clearMessagesCache(type: CubaClearMessagesCache) {
-        appName = "${modulePrefix}"
-    }
-    deployConf.dependsOn clearMessagesCache
-
-    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
-        delete "$cuba.appHome/${modulePrefix}/conf"
-    }
-
-    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
-        appName = "${modulePrefix}"
-        appJars(modulePrefix + '-global', modulePrefix + '-web')
-    }
-}
-
-
-task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
-    delete("$cuba.tomcat.dir/shared")
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}-core")
-    delete("$cuba.tomcat.dir/webapps/${modulePrefix}")
-}
-
-task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefix}-web:deploy"], description: 'Redeploys applications and restarts local Tomcat') {
-    doLast {
-        ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
-            not {
-                socket(server: 'localhost', port: '8787')
-            }
-        }
-    }
-}
-restart.finalizedBy start
