@@ -4,6 +4,21 @@
     <option name="isOneToOneIndex" value="false" />
     <option name="isNewFkConstraintNaming" value="false" />
     <option name="isJoinedInheritanceDeleteCascade" value="false" />
+    <option name="groupUpdateScriptsBy" value="MONTH" />
     <option name="stateVersion" value="1" />
+    <option name="savedDbProperties">
+      <list>
+        <SavedDbProperties>
+          <option name="databaseName" value="sales" />
+          <option name="dbType" value="hsql" />
+          <option name="dbmsVersion" />
+          <option name="host" value="localhost" />
+          <option name="systemPassword" value="" />
+          <option name="systemUser" value="" />
+          <option name="url" value="jdbc:hsqldb:hsql://localhost/sales" />
+          <option name="user" value="sa" />
+        </SavedDbProperties>
+      </list>
+    </option>
   </component>
 </project>
