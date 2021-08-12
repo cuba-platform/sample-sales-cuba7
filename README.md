@@ -17,7 +17,7 @@ The application project covers the following aspects:
     - Visual editing of the existing screens
 - Creating Integration Tests
 
-Based on CUBA Platform 7.2
+Based on CUBA Platform 7.2 (7.2.15 version)
 
 ## Issues
 Please use https://www.cuba-platform.com/discuss for discussion, support and reporting problems corresponding to this sample.
