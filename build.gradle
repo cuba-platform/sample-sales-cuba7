@@ -2,9 +2,8 @@ buildscript {
     ext.cubaVersion = '7.2.10'
     repositories {
         maven {
-            url 'https://dl.bintray.com/cuba-platform/main'
+            url 'https://repo.cuba-platform.com/content/groups/work'
         }
-        jcenter()
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
