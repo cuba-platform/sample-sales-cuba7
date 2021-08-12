@@ -45,6 +45,7 @@ create table SALES_ORDER (
     DELETED_BY varchar(50),
     --
     DATE_ date not null,
+    NUMBER_ varchar(255),
     AMOUNT decimal(19, 2),
     CUSTOMER_ID varchar(36),
     NUMBER_OF_SPECIAL_PRODUCTS integer,

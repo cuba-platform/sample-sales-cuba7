@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<queries xmlns="http://schemas.haulmont.com/cuba/rest-queries.xsd">
+    <query name="ordersAfterDate" entity="sales_Order" view="order-edit">
+        <jpql><![CDATA[select o from sales_Order o where o.date >= :startDate and o.date <= :endDate]]></jpql>
+        <params>
+            <param name="startDate" type="java.util.Date"/>
+            <param name="endDate" type="java.util.Date"/>
+        </params>
+    </query>
+    <query name="ordersByIds" entity="sales_Order" view="order-edit">
+        <jpql><![CDATA[select o from sales_Order o where o.id in :ids]]></jpql>
+        <params>
+            <param name="ids" type="java.lang.String[]"/>
+        </params>
+    </query>
+</queries>

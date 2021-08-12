@@ -6,5 +6,13 @@
     <!-- Annotation-based beans -->
     <context:component-scan base-package="com.company.sales"/>
     <gui:screens base-packages="com.company.sales.web"/>
+    <bean id="sales_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="sales_OrderService" value="com.company.sales.service.OrderService"/>
+            </map>
+        </property>
+    </bean>
 
 </beans>

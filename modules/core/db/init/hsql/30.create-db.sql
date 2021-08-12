@@ -23,40 +23,40 @@ values ('401f2128-8359-1cf3-6b8f-83ff2ee000f0', 3, '2017-12-19 11:38:33', 'admin
 ----------------- insert PRODUCTS -----------------
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('67f64099-67f6-4099-4b6b-eac64b6beac6', 3, '2017-12-19 11:38:33', 'admin', '2017-12-19 11:39:28', 'admin', null, null, 'Outback Power Nano-Carbon Battery 12V', 6.25);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('67f64099-67f6-4099-4b6b-eac64b6beac6', 3, '2017-12-19 11:38:33', 'admin', '2017-12-19 11:39:28', 'admin', null, null, 'Outback Power Nano-Carbon Battery 12V', 6.25, true);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('e62906e5-1f1a-1bf1-9a57-c798293e86d7', 1, '2017-12-19 11:39:22', 'admin', '2017-12-19 11:39:22', null, null, null, 'Fullriver Sealed Battery 6V', 5.10);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('e62906e5-1f1a-1bf1-9a57-c798293e86d7', 1, '2017-12-19 11:39:22', 'admin', '2017-12-19 11:39:22', null, null, null, 'Fullriver Sealed Battery 6V', 5.10, false);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('1d2272b5-a702-e3d4-6d2c-7cd360f93182', 1, '2017-12-19 11:40:06', 'admin', '2017-12-19 11:40:06', null, null, null, 'Solar-One HUP Flooded Battery 48V', 210.55);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('1d2272b5-a702-e3d4-6d2c-7cd360f93182', 1, '2017-12-19 11:40:06', 'admin', '2017-12-19 11:40:06', null, null, null, 'Solar-One HUP Flooded Battery 48V', 210.55,true);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('e4283740-960a-1180-783d-3ffe2cf6af90', 1, '2017-12-19 11:40:54', 'admin', '2017-12-19 11:40:54', null, null, null, 'Four Star Solar Crown Battery Bank', 29.25);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('e4283740-960a-1180-783d-3ffe2cf6af90', 1, '2017-12-19 11:40:54', 'admin', '2017-12-19 11:40:54', null, null, null, 'Four Star Solar Crown Battery Bank', 29.25,true);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('008f9335-c3a4-8e3b-cb59-a2e6b1e6b283', 1, '2017-12-19 11:41:26', 'admin', '2017-12-19 11:41:26', null, null, null, 'Cotek Battery Charger', 30.10);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('008f9335-c3a4-8e3b-cb59-a2e6b1e6b283', 1, '2017-12-19 11:41:26', 'admin', '2017-12-19 11:41:26', null, null, null, 'Cotek Battery Charger', 30.10, false);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('e8f27ecf-4024-aa12-9362-7a11f150e65a', 2, '2017-12-19 11:42:00', 'admin', '2017-12-19 11:42:06', 'admin', null, null, 'Outback Power Remote Power System', 49.99);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('e8f27ecf-4024-aa12-9362-7a11f150e65a', 2, '2017-12-19 11:42:00', 'admin', '2017-12-19 11:42:06', 'admin', null, null, 'Outback Power Remote Power System', 49.99,true);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('6a6522f0-6a0b-fc38-5d58-5cad19e53826', 1, '2017-12-19 11:42:43', 'admin', '2017-12-19 11:42:43', null, null, null, 'Fronius Symo Lite Inverter', 42.90);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('6a6522f0-6a0b-fc38-5d58-5cad19e53826', 1, '2017-12-19 11:42:43', 'admin', '2017-12-19 11:42:43', null, null, null, 'Fronius Symo Lite Inverter', 42.90,true);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('345e429f-6d74-7d1a-d1ab-9f6c67c10fe5', 1, '2017-12-19 11:43:20', 'admin', '2017-12-19 11:43:20', null, null, null, 'Astronergy Solar Panel', 23.00);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('345e429f-6d74-7d1a-d1ab-9f6c67c10fe5', 1, '2017-12-19 11:43:20', 'admin', '2017-12-19 11:43:20', null, null, null, 'Astronergy Solar Panel', 23.00, false);
 
 insert into SALES_PRODUCT
-(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE)
-values ('e0887c63-06e7-abd2-425d-9235124bae3d', 1, '2017-12-19 11:43:48', 'admin', '2017-12-19 11:43:48', null, null, null, 'SunPower Flexible Solar Panel', 25.00);
+(ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PRICE, SPECIAL)
+values ('e0887c63-06e7-abd2-425d-9235124bae3d', 1, '2017-12-19 11:43:48', 'admin', '2017-12-19 11:43:48', null, null, null, 'SunPower Flexible Solar Panel', 25.00,true);
 
 ----------------- insert ORDERS -----------------
 
