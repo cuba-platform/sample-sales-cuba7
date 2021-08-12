@@ -42,6 +42,7 @@
                                 type="picker_open"/>
                     </actions>
                 </lookupPickerField>
+                <textField id="numberField" property="number"/>
             </column>
         </form>
         <groupBox id="linesBox"

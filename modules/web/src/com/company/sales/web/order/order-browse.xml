@@ -39,6 +39,7 @@
                 <column id="amount"/>
                 <column id="customer"/>
                 <column id="numberOfSpecialProducts"/>
+                <column id="number"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

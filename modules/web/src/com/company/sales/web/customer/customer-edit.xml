@@ -40,6 +40,7 @@
             <columns>
                 <column id="date"/>
                 <column id="amount"/>
+                <column id="number"/>
             </columns>
         </table>
         <hbox id="editActions"

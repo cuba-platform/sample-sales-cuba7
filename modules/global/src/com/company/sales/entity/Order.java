@@ -23,6 +23,9 @@ public class Order extends StandardEntity {
     @Column(name = "DATE_", nullable = false)
     protected Date date;
 
+    @Column(name = "NUMBER_")
+    private String number;
+
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "order")
@@ -38,6 +41,14 @@ public class Order extends StandardEntity {
 
     @Column(name = "NUMBER_OF_SPECIAL_PRODUCTS")
     protected Integer numberOfSpecialProducts;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public Integer getNumberOfSpecialProducts() {
         return numberOfSpecialProducts;
